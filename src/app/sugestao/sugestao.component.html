@@ -1,0 +1,59 @@
+<div *ngIf="!nome; else formInfoSug">
+    <form [formGroup]="rFormSug" (ngSubmit)="addPost(rFormSug.value)" class="form-horizontal">
+      <fieldset>
+        <legend>Cadastro do Usuário</legend>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nome">Nome:</label>
+            <div class="col-md-5">
+              <input  type="text" formControlName="nome"  class="form-control input-md" placeholder="Nome" />
+              <span class="alert" *ngIf="!rFormSug.controls['nome'].valid && rFormSug.controls['nome'].touched">{{nomeAlert}}</span>
+              <span class="sucess" *ngIf="rFormSug.controls['nome'].valid && rFormSug.controls['nome'].touched">{{nomeSucess}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">E-mail:</label>
+            <div class="col-md-5">
+              <input type="email" formControlName="email" class="form-control input-md" placeholder="E-mail"/>
+              <span class="alert" *ngIf="!rFormSug.controls['email'].valid && rFormSug.controls['email'].touched ">{{emailAlert}}</span>
+              <span class="sucess" *ngIf="rFormSug.controls['email'].valid && rFormSug.controls['email'].touched"> {{emailSucess}}</span>
+            </div>
+        </div>
+        <div class="form-group" >
+          <label class="col-md-4 control-label" for="telefone">Telefone:</label>
+            <div class="col-md-5">
+              <input formControlName="telefone" type="text" placeholder="(11)1111-1111" class="form-control input-md"/>
+              <span class="alert" *ngIf="!rFormSug.controls['telefone'].valid && rFormSug.controls['telefone'].touched">{{telefoneAlert}}</span>
+              <span class="sucess" *ngIf="rFormSug.controls['telefone'].valid && rFormSug.controls['telefone'].touched">{{telefoneSucess}}</span>
+            </div>
+        </div>
+        <div class="form-group" >
+          <label class="col-md-4 control-label" for="assunto">Assunto:</label>
+            <div class="col-md-5">
+              <input formControlName="assunto" type="text" placeholder="Assunto" class="form-control input-md"/>
+              <span class="alert" *ngIf="!rFormSug.controls['assunto'].valid && rFormSug.controls['assunto'].touched">{{assuntoAlert}}</span>
+              <span class="sucess" *ngIf="rFormSug.controls['assunto'].valid && rFormSug.controls['assunto'].touched">{{assuntoSucess}}</span>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label class="col-md-4 control-label" for="mensagem">Mensagem:</label>
+              <div class="col-md-5">
+                <textarea formControlName="mensagem" placeholder="Mensagem" class="form-control input-md"></textarea>
+                <span class="alert" *ngIf="!rFormSug.controls['mensagem'].valid && rFormSug.controls['mensagem'].touched">{{mensagemAlert}}</span>
+                <span class="sucess" *ngIf="rFormSug.controls['mensagem'].valid && rFormSug.controls['mensagem'].touched">{{mensagemSucess}}</span>
+              </div>
+          </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="idConfirmar"></label>
+          <div class="col-md-8">
+            <input type="submit"  class="btn btn-primary" value="Confirmar" [disabled]="!rFormSug.valid" value="Cadastrar" >
+            <button id="idCancelar" name="idCancelar" class="btn btn-danger"><a [routerLink]="['/home']"> Cancelar </a></button>
+          </div>
+        </div>
+
+
+      </fieldset>
+      </form>
+    </div>
+    <ng-template #formInfoSug>
+      Obrigado {{nome}}, por enviar sua sugestão a nossa equipe.
+    </ng-template>

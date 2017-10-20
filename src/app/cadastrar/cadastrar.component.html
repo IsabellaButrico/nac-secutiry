@@ -1,0 +1,57 @@
+<div *ngIf="!nome; else forminfo">
+<form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)" class="form-horizontal">
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend>Cadastro do Usuário</legend>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="nome">Nome</label>
+    <div class="col-md-5">
+      <input type="text" formControlName="nome"  class="form-control input-md" placeholder="Nome" />
+      <span class="alert" *ngIf="!rForm.controls['nome'].valid && rForm.controls['nome'].touched">{{nomeAlert}}</span>
+      <span class="sucess" *ngIf="rForm.controls['nome'].valid && rForm.controls['nome'].touched">Nome: {{sucess}}</span>
+    </div>
+  </div>
+
+  <div class="form-group" >
+    <label class="col-md-4 control-label" for="telefone">Telefone</label>
+    <div class="col-md-5">
+      <input id="telefone" formControlName="telefone" type="text" placeholder="Telefone: 01112345678" class="form-control input-md"/>
+      <span class="alert" *ngIf="!rForm.controls['telefone'].valid && rForm.controls['telefone'].touched">{{telefoneAlert}}</span>
+      <span class="sucess" *ngIf="rForm.controls['telefone'].valid && rForm.controls['telefone'].touched">{{tellSucess}}</span>
+    </div>
+  </div>
+
+  <div class="form-group" >
+    <label class="col-md-4 control-label" for="email">E-mail</label>
+    <div class="col-md-5">
+      <input id="email" formControlName="email" type="email" placeholder="E-mail" class="form-control input-md"/>
+      <span class="alert" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">{{emailAlert}}</span>
+      <span class="sucess" *ngIf="rForm.controls['email'].valid && rForm.controls['email'].touched">{{emailSucess}}</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="senha">Senha</label>
+    <div class="col-md-5">
+      <input id="senha" formControlName="senha" type="password" placeholder="Digite a senha" class="form-control input-md" />
+      <span class="alert" *ngIf="!rForm.controls['senha'].valid && rForm.controls['senha'].touched">{{senhaAlert}}</span>
+      <span class="sucess" *ngIf="rForm.controls['senha'].valid && rForm.controls['senha'].touched">{{senhaSucess}}</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="idConfirmar"></label>
+    <div class="col-md-8">
+      <input type="submit"  class="btn btn-primary" value="Confirmar" [disabled]="!rForm.valid" value="Cadastrar" >
+      <button id="idCancelar" name="idCancelar" class="btn btn-danger"><a [routerLink]="['/home']"> Cancelar </a></button>
+    </div>
+  </div>
+
+  </fieldset>
+  </form>
+</div>
+<ng-template #forminfo>
+  Usuario {{nome}} cadastro com sucesso
+</ng-template>
